@@ -1,0 +1,29 @@
+#!/usr/bin/python3
+# Factorize as many numbers as possible into a product of two smaller numbers.
+from sys import argv
+
+
+def findOneFactor(n: int)-> int:
+    if n <= 3:
+        return (1)
+    if n % 2 == 0:
+        return (2)
+    if n % 3 == 0:
+        return (3)
+    for fac in range(5, int(n**0.5) + 1):
+        if n % fac == 0:
+            return (fac)
+  
+
+def factors():
+    try:
+        readfile = argv[1]
+        for line in  open(readfile):
+            num = int(line[:-1])
+            factor = findOneFactor(num)
+            print("{}={}*{}".format(num, num // factor, factor))
+    except (IndexError):
+        pass
+
+
+factors()
